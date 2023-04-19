@@ -48,15 +48,14 @@ public:
         }
     }
 
-    void DFS(int u, bool* visited) 
-    {
-        bool* visited = new bool[num_vertices];
-        memset(visited, false, sizeof(bool) * num_vertices);
-        for (int u = 0; u < num_vertices; u++) {
-            if (!visited[u]) {
-                DFS(u, visited);
+    void DFS(int u, bool* visited) {
+        visited[u] = true;
+        cout << u << " ";
+        for (int i = head[u]; i != -1; i = (u == edges[i].u ? edges[i].nextu : edges[i].nextv)) {
+            int v = (u == edges[i].u ? edges[i].v : edges[i].u);
+            if (!visited[v]) {
+                DFS(v, visited);
             }
         }
-        delete[] visited;
     }
 };
