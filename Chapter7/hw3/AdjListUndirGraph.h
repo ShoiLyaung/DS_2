@@ -47,4 +47,16 @@ public:
             cout << endl;
         }
     }
+
+    void DFS(int u, bool* visited) 
+    {
+        bool* visited = new bool[num_vertices];
+        memset(visited, false, sizeof(bool) * num_vertices);
+        for (int u = 0; u < num_vertices; u++) {
+            if (!visited[u]) {
+                DFS(u, visited);
+            }
+        }
+        delete[] visited;
+    }
 };
