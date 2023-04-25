@@ -15,6 +15,7 @@ class Graph {
 private:
     Edge* edges;
     int* head;
+    bool *tags;
     int idx;
     int num_vertices;
     int num_edges;
@@ -23,13 +24,16 @@ public:
     Graph(int n, int m) : num_vertices(n), num_edges(m) {
         edges = new Edge[2 * num_edges];
         head = new int[num_vertices];
+        tags = new bool[num_vertices];
         idx = 0;
         memset(head, -1, sizeof(int) * num_vertices);
+        memset(tags, false, sizeof(bool) * num_vertices);
     }
 
     ~Graph() {
         delete[] edges;
         delete[] head;
+        delete[] tags;
     }
 
     void add_edge(int u, int v, int weight) {
@@ -42,19 +46,37 @@ public:
             cout << "Vertex " << u << ": ";
             for (int i = head[u]; i != -1; i = (u == edges[i].u ? edges[i].nextu : edges[i].nextv)) {
                 int v = (u == edges[i].u ? edges[i].v : edges[i].u);
-                cout << "(" << v << ", " << edges[i].weight << ") ";
+                cout << " " << v << " (" << edges[i].weight << ") ";
             }
             cout << endl;
         }
     }
 
-    void DFS(int u, bool* visited) {
-        visited[u] = true;
-        cout << u << " ";
+    void has_simple_path(int n){
+        
+        for (int u = 0; u < num_vertices; u++) {
+            memset(tags, false, sizeof(bool) * num_vertices);
+            cout << u ;
+            if (!tags[u]) {
+                DFS(u,n);
+            }
+            cout << endl;
+        }
+    }
+
+    void DFS(int u,int n) {
+        if (n==0) {
+            cout << " 和 " << u << " 之间存在一条长度为n的简单路径" ;
+            return;
+        }
+        tags[u] = true;
+        // cout << u << " ";
         for (int i = head[u]; i != -1; i = (u == edges[i].u ? edges[i].nextu : edges[i].nextv)) {
             int v = (u == edges[i].u ? edges[i].v : edges[i].u);
-            if (!visited[v]) {
-                DFS(v, visited);
+            if (!tags[v]) {
+                n -= edges[i].weight;
+                DFS(v,n);
+                n += edges[i].weight;
             }
         }
     }
