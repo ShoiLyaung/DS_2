@@ -57,9 +57,8 @@ public:
         for (int u = 0; u < num_vertices; u++) {
             memset(tags, false, sizeof(bool) * num_vertices);
             cout << u ;
-            if (!tags[u]) {
-                DFS(u,n);
-            }
+            DFS(u,n);
+            
             cout << endl;
         }
     }
@@ -79,5 +78,6 @@ public:
                 n += edges[i].weight;
             }
         }
+        tags[u] = false;
     }
 };
