@@ -3,24 +3,23 @@
 using namespace std;
 
 int main() {
-    // Graph g(6, 11);
-    // g.add_edge(0, 1, 12);
-    // g.add_edge(0, 4, 9);
-    // g.add_edge(0, 5, 10);
-    // g.add_edge(0, 2, 3);
-    // g.add_edge(1, 4, 6);
-    // g.add_edge(1, 3, 2);
-    // g.add_edge(2, 5, 6);
-    // g.add_edge(2, 3, 2);
-    // g.add_edge(3, 4, 4);
-    // g.add_edge(3, 5, 7);
-    // g.add_edge(4, 5, 4);
+    Graph g(6, 11);
 
-    Graph g(4, 4);
-    g.add_edge(0, 1, 1);
-    g.add_edge(1, 3, 3);
-    g.add_edge(1, 2, 1);
-    g.add_edge(3, 2, 1);
+    g.add_edge(0, 1, 12);
+    g.add_edge(0, 2, 3);
+    g.add_edge(0, 4, 9);
+    g.add_edge(0, 5, 10);
+
+    g.add_edge(1, 4, 6);
+    g.add_edge(1, 3, 2);
+
+    g.add_edge(2, 3, 2);
+    g.add_edge(2, 5, 6);
+
+    g.add_edge(3, 4, 4);
+    g.add_edge(3, 5, 7);
+
+    g.add_edge(4, 5, 4);
 
     g.print_graph();
 

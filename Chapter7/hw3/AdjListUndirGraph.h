@@ -56,28 +56,30 @@ public:
         
         for (int u = 0; u < num_vertices; u++) {
             memset(tags, false, sizeof(bool) * num_vertices);
-            cout << u ;
+            cout << "--------------------------------------" << endl;
+            cout << u << endl;
             DFS(u,n);
             
             cout << endl;
         }
     }
 
+    
     void DFS(int u,int n) {
         if (n==0) {
-            cout << " 和 " << u << " 之间存在一条长度为n的简单路径" ;
+            cout << " 和 " << u << " 之间存在一条长度为n的简单路径" << endl;
             return;
         }
-        tags[u] = true;
-        // cout << u << " ";
-        for (int i = head[u]; i != -1; i = (u == edges[i].u ? edges[i].nextu : edges[i].nextv)) {
-            int v = (u == edges[i].u ? edges[i].v : edges[i].u);
-            if (!tags[v]) {
-                n -= edges[i].weight;
-                DFS(v,n);
-                n += edges[i].weight;
+        else{
+            tags[u] = true;
+            // cout << u << " ";
+            for (int i = head[u]; i != -1; i = (u == edges[i].u ? edges[i].nextu : edges[i].nextv)) {
+                int v = (u == edges[i].u ? edges[i].v : edges[i].u);
+                if (!tags[v]) {
+                    DFS(v,n-edges[i].weight);
+                }
             }
+            tags[u] = false;
         }
-        tags[u] = false;
     }
 };
