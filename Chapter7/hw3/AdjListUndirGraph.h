@@ -72,7 +72,6 @@ public:
         }
         else{
             tags[u] = true;
-            // cout << u << " ";
             for (int i = head[u]; i != -1; i = (u == edges[i].u ? edges[i].nextu : edges[i].nextv)) {
                 int v = (u == edges[i].u ? edges[i].v : edges[i].u);
                 if (!tags[v]) {
