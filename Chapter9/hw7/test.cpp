@@ -1,22 +1,29 @@
 #include "LinkQuickSort.h"
+#include <cstdlib> // 包含 rand() 和 srand() 函数
+#include <ctime> // 包含 time() 函数
 
 using namespace std;
 
 int main() {
-    List list; // 创建一个空的双向链表
-    list.insert(5); // 插入一些数据
-    list.insert(3);
-    list.insert(7);
-    list.insert(2);
-    list.insert(9);
-    list.insert(4);
-    list.insert(6);
-    list.insert(8);
-    list.insert(1);
-    cout << "Before sorting: " << endl;
-    list.print(); // 打印排序前的链表
-    list.sort(); // 对链表进行快速排序
-    cout << "After sorting: " << endl;
-    list.print(); // 打印排序后的链表
+    DoublyLinkedList list;
+
+    // 设置随机数种子
+    srand(time(0));
+
+    // 生成随机测试数据
+    const int testDataSize = 10;
+    for (int i = 0; i < testDataSize; ++i) {
+        int randomData = rand() % 100; // 生成 0-99 之间的随机数
+        list.insert(randomData);
+    }
+
+    cout << "Original List: ";
+    list.print();
+
+    list.quickSort();
+
+    cout << "\nSorted List: ";
+    list.print();
+
     return 0;
 }
