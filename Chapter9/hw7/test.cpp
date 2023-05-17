@@ -11,18 +11,24 @@ int main() {
     srand(time(0));
 
     // 生成随机测试数据
-    const int testDataSize = 10;
-    for (int i = 0; i < testDataSize; ++i) {
-        int randomData = rand() % 100; // 生成 0-99 之间的随机数
-        list.insert(randomData);
-    }
+    // const int testDataSize = 10;
+    // for (int i = 0; i < testDataSize; ++i) {
+    //     int randomData = rand() % 100; // 生成 0-99 之间的随机数
+    //     list.insert(randomData);
+    // }
 
-    cout << "Original List: ";
+    list.insert(65);
+    list.insert(56);
+    list.insert(75);
+    list.insert(13);
+    list.insert(27);
+
+    cout << "Original List: \t";
     list.print();
 
     list.quickSort();
 
-    cout << "\nSorted List: ";
+    cout << "\nSorted List: \t";
     list.print();
 
     return 0;

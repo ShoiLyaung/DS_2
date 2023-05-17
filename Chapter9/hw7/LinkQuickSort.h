@@ -54,25 +54,75 @@ private:
         }
     }
 
-    Node* partition(Node* left, Node* right) {
+    Node* partition(Node*& left, Node*& right) {
         int pivot = right->data;    // 取枢轴元素 
         Node* i = left->prev;
 
         for (Node* j = left; j != right; j = j->next) {
             if (j->data <= pivot) {
-                i = (i == nullptr) ? left : i->next;
+                i = i->next;
+                if(i==left) left=j;
                 swap(i, j);
+                
             }
         }
-        i = (i == nullptr) ? left : i->next;
+        i = i->next;
+        if(i==left) left=right;
         swap(i, right);
+
         return i;
     }
 
-    void swap(Node* a, Node* b) {
-        int temp = a->data;
-        a->data = b->data;
-        b->data = temp;
+    // void swap(Node*& a, Node*& b) {
+    //     int temp = a->data;
+    //     a->data = b->data;
+    //     b->data = temp;
+    // }
+
+    void swap(Node*& a, Node*& b) {
+        if (a == b) return;
+        if (a->next == b) { // a 和 b 相邻
+            a->prev->next = b;
+            if(b->next){    // b 不是尾结点
+                b->next->prev = a;
+                a->next = b->next;
+                b->prev = a->prev;
+                a->prev = b;
+                b->next = a;
+            }
+            else{           // b 是尾结点
+                b->prev = a->prev;
+                a->prev = b;
+                a->next = nullptr;
+                b->next = a;
+            }
+        } else if (b->next == a) {  // a 和 b 相邻
+            swap(b, a);
+        } else {            // a 和 b 不相邻
+            Node* temp = a->prev;
+            a->prev = b->prev;
+            b->prev = temp;
+
+            temp = a->next;
+            a->next = b->next;
+            b->next = temp;
+
+            if (a->prev) {
+                a->prev->next = a;
+            }
+            if (a->next) {
+                a->next->prev = a;
+            }
+            if (b->prev) {
+                b->prev->next = b;
+            }
+            if (b->next) {
+                b->next->prev = b;
+            }
+        }
+        Node* temp = a; // 交换 a 和 b
+        a = b;
+        b = temp;
     }
 };
 
