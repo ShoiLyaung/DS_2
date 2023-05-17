@@ -7,21 +7,31 @@ using namespace std;
 int main() {
     DoublyLinkedList list;
 
-    // 设置随机数种子
-    srand(time(0));
-
-    // 生成随机测试数据
+    // // 生成随机测试数据
+    // // 设置随机数种子
+    // srand(time(0));
     // const int testDataSize = 10;
     // for (int i = 0; i < testDataSize; ++i) {
     //     int randomData = rand() % 100; // 生成 0-99 之间的随机数
     //     list.insert(randomData);
     // }
 
-    list.insert(65);
-    list.insert(56);
-    list.insert(75);
-    list.insert(13);
-    list.insert(27);
+    // //测试一个数据
+    // list.insert(65);
+
+    // //测试两个数据
+    // list.insert(65);
+    // list.insert(56);
+
+    // list.insert(56);
+    // list.insert(65);
+
+    // //测试多个数据
+    // list.insert(65);
+    // list.insert(56);
+    // list.insert(75);
+    // list.insert(13);
+    // list.insert(27);
 
     cout << "Original List: \t";
     list.print();
